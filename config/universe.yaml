@@ -1,0 +1,95 @@
+# Universo azionario europeo.
+# Suffissi Yahoo Finance: .MI Milano | .PA Parigi | .DE Xetra | .AS Amsterdam
+# .MC Madrid | .BR Bruxelles | .LS Lisbona | .VI Vienna | .SW Zurigo
+# .L Londra | .ST Stoccolma | .OL Oslo | .CO Copenaghen | .HE Helsinki | .IR Dublino
+#
+# Aggiungi/rimuovi liberamente. Il pipeline gestisce ticker non validi senza bloccarsi.
+
+markets:
+  Italia:
+    currency: EUR
+    benchmark: FTSEMIB.MI
+    tickers: [ENI.MI, ISP.MI, UCG.MI, ENEL.MI, STLAM.MI, RACE.MI, G.MI, PST.MI,
+              SRG.MI, TRN.MI, MONC.MI, PRY.MI, LDO.MI, TIT.MI, MB.MI, BAMI.MI,
+              BMPS.MI, A2A.MI, HER.MI, CPR.MI, REC.MI, INW.MI, DIA.MI, IP.MI,
+              AMP.MI, BC.MI, ERG.MI, IG.MI, MARR.MI, SPM.MI]
+
+  Francia:
+    currency: EUR
+    benchmark: ^FCHI
+    tickers: [MC.PA, OR.PA, TTE.PA, SU.PA, AI.PA, SAN.PA, AIR.PA, EL.PA, BNP.PA,
+              CS.PA, DG.PA, SAF.PA, RMS.PA, KER.PA, VIE.PA, ORA.PA, GLE.PA, ACA.PA,
+              STLAP.PA, LR.PA, PUB.PA, CAP.PA, ML.PA, RI.PA, BN.PA, ENGI.PA, EN.PA]
+
+  Germania:
+    currency: EUR
+    benchmark: ^GDAXI
+    tickers: [SAP.DE, SIE.DE, ALV.DE, DTE.DE, MUV2.DE, AIR.DE, MRK.DE, BAS.DE,
+              BAYN.DE, BMW.DE, MBG.DE, VOW3.DE, DBK.DE, RWE.DE, EOAN.DE, ADS.DE,
+              IFX.DE, DPW.DE, HEN3.DE, BEI.DE, CON.DE, HEI.DE, FRE.DE, SY1.DE,
+              RHM.DE, DB1.DE, ZAL.DE, PAH3.DE, LHA.DE, SHL.DE]
+
+  Paesi_Bassi:
+    currency: EUR
+    benchmark: ^AEX
+    tickers: [ASML.AS, INGA.AS, AD.AS, PHIA.AS, HEIA.AS, DSFIR.AS, WKL.AS,
+              RAND.AS, KPN.AS, ASM.AS, BESI.AS, AKZA.AS, NN.AS, ABN.AS, PRX.AS]
+
+  Spagna:
+    currency: EUR
+    benchmark: ^IBEX
+    tickers: [ITX.MC, SAN.MC, BBVA.MC, IBE.MC, TEF.MC, REP.MC, AENA.MC, FER.MC,
+              CABK.MC, AMS.MC, ACS.MC, ELE.MC, NTGY.MC, GRF.MC, MAP.MC, CLNX.MC]
+
+  Belgio_Portogallo:
+    currency: EUR
+    benchmark: ^BFX
+    tickers: [ABI.BR, KBC.BR, UCB.BR, SOLB.BR, GBLB.BR, PROX.BR,
+              EDP.LS, GALP.LS, JMT.LS, EDPR.LS, NOS.LS]
+
+  Svizzera:
+    currency: CHF
+    benchmark: ^SSMI
+    tickers: [NESN.SW, ROG.SW, NOVN.SW, UBSG.SW, ZURN.SW, ABBN.SW, LONN.SW,
+              SIKA.SW, GIVN.SW, CFR.SW, SREN.SW, HOLN.SW, SGSN.SW, GEBN.SW]
+
+  UK:
+    currency: GBP
+    benchmark: ^FTSE
+    tickers: [SHEL.L, AZN.L, HSBA.L, ULVR.L, BP.L, RIO.L, GSK.L, DGE.L, BATS.L,
+              GLEN.L, LSEG.L, REL.L, NG.L, BARC.L, LLOY.L, TSCO.L, VOD.L, RR.L,
+              PRU.L, IMB.L, CPG.L, AAL.L, SGE.L, BA.L]
+
+  Nordics:
+    currency: MIXED
+    benchmark: ^OMX
+    tickers: [NOVO-B.CO, MAERSK-B.CO, DSV.CO, VWS.CO, CARL-B.CO, ORSTED.CO,
+              ATCO-A.ST, VOLV-B.ST, INVE-B.ST, SAND.ST, ERIC-B.ST, HM-B.ST,
+              ASSA-B.ST, SEB-A.ST, EQNR.OL, DNB.OL, TEL.OL, NHY.OL,
+              NOKIA.HE, SAMPO.HE, KNEBV.HE, UPM.HE, FORTUM.HE, NESTE.HE]
+
+  Irlanda_Austria:
+    currency: EUR
+    benchmark: ^ATX
+    tickers: [RYA.IR, KRZ.IR, KRX.IR, OMV.VI, VOE.VI, EBS.VI, RBI.VI, VER.VI]
+
+# --- Obbligazionario: ETF quotati come proxy investibili ---
+bond_etfs:
+  Governativi_EUR:
+    - {ticker: IEAG.MI, name: "iShares Euro Aggregate Bond"}
+    - {ticker: IBGL.MI, name: "iShares Euro Gov Bond 15-30y"}
+    - {ticker: IBGM.MI, name: "iShares Euro Gov Bond 3-5y"}
+    - {ticker: IBGS.MI, name: "iShares Euro Gov Bond 1-3y"}
+    - {ticker: XGSD.MI, name: "Xtrackers Eurozone Gov Bond"}
+    - {ticker: ITPS.MI, name: "iShares Euro Inflation Linked"}
+  Corporate_EUR:
+    - {ticker: IEAC.MI, name: "iShares Core Euro Corp Bond"}
+    - {ticker: EUNW.DE, name: "iShares Euro Corp 1-5y"}
+    - {ticker: IHYG.MI, name: "iShares Euro High Yield Corp"}
+    - {ticker: EHYA.MI, name: "iShares Euro HY ESG"}
+  Paesi_singoli:
+    - {ticker: ITPS.MI, name: "Italia inflation linked"}
+    - {ticker: IBTM.MI, name: "US Treasury 7-10y (confronto)"}
+
+# Curve dei rendimenti ECB (Data Portal). Scadenze da scaricare.
+ecb_curve_maturities: ["3M", "6M", "1Y", "2Y", "3Y", "5Y", "7Y", "10Y", "15Y", "20Y", "30Y"]
