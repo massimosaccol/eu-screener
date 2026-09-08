@@ -26,7 +26,7 @@ markets:
     benchmark: ^GDAXI
     tickers: [SAP.DE, SIE.DE, ALV.DE, DTE.DE, MUV2.DE, AIR.DE, MRK.DE, BAS.DE,
               BAYN.DE, BMW.DE, MBG.DE, VOW3.DE, DBK.DE, RWE.DE, EOAN.DE, ADS.DE,
-              IFX.DE, DPW.DE, HEN3.DE, BEI.DE, CON.DE, HEI.DE, FRE.DE, SY1.DE,
+              IFX.DE, DHL.DE, HEN3.DE, BEI.DE, CON.DE, HEI.DE, FRE.DE, SY1.DE,
               RHM.DE, DB1.DE, ZAL.DE, PAH3.DE, LHA.DE, SHL.DE]
 
   Paesi_Bassi:
@@ -50,7 +50,7 @@ markets:
   Svizzera:
     currency: CHF
     benchmark: ^SSMI
-    tickers: [NESN.SW, ROG.SW, NOVN.SW, UBSG.SW, ZURN.SW, ABBN.SW, LONN.SW,
+    tickers: [NESN.SW, RO.SW, NOVN.SW, UBSG.SW, ZURN.SW, ABBN.SW, LONN.SW,
               SIKA.SW, GIVN.SW, CFR.SW, SREN.SW, HOLN.SW, SGSN.SW, GEBN.SW]
 
   UK:
