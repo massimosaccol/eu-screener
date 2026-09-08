@@ -37,10 +37,22 @@ jobs:
           git add data/*.parquet data/*.csv data/*.json
           if git diff --staged --quiet; then
             echo "Nessuna variazione."
-          else
-            git commit -m "Aggiornamento dati $(date -u +'%Y-%m-%d')"
-            git push
+            exit 0
           fi
+          git commit -m "Aggiornamento dati $(date -u +'%Y-%m-%d')"
+          # Nel frattempo qualcun altro potrebbe aver scritto sul repository:
+          # si integra il remoto tenendo i dati appena generati, poi si riprova.
+          for i in 1 2 3; do
+            if git push; then
+              echo "Push riuscito al tentativo $i."
+              exit 0
+            fi
+            echo "Push respinto, sincronizzo con il remoto (tentativo $i)."
+            git pull --no-rebase -X ours --no-edit origin main || exit 1
+            sleep 5
+          done
+          echo "Push fallito dopo 3 tentativi."
+          exit 1
 
       - uses: actions/upload-artifact@v4
         if: always()
